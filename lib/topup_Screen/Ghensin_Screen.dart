@@ -281,7 +281,8 @@ GestureDetector(
                 border: InputBorder.none,
               ),
             ),
-          ), SizedBox(height: 10), 
+          ),
+           SizedBox(height: 10), 
            Text(
         'Server',
         style: TextStyle(

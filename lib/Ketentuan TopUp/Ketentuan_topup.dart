@@ -478,28 +478,136 @@ class KT_genshin extends StatelessWidget {
 
 class KT_PubgM extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      'Top up UC',
-      style: TextStyle(fontSize: 16),
+ Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff22577A),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).pop(); // Kembali ke halaman sebelumnya
+          },
+        ),
+        title: Text(
+          'Kembali',
+          style: TextStyle(fontSize: 16, color: Colors.white),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.only(top: 0),
+          padding: EdgeInsets.only(left: 30),
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 25),
+              Text(
+                'Top up PUBG Mobile',
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  'GamerStore mempersembahkan penawaran istimewa untuk penawaran sejati untuk para Gamers sejati kami hadir dengan layanan Topup resmi 100% legal untuk PUBG Mobile, Yang dirancang khusus untuk meningkatkan pengalaman bermain game anda. Nikmati kemudahan, keamanan, dan harga yang terjangkau dalam setiap transaksi Top up anda\n\nTop up PUBG Mobile Resmi dan terpercaya.\n\nBerikut adalah langkah-langkah sederhana untuk topup PUBG Mobile: \n\n1.Masukan Data Akun PUBG Mobile(pastikan data yang anda masukan sudah benar dan lengkap)\n2.Pilih nominal UC (kami menyediakan berbagai pilihan nominal yang bisa anda sesuaikan dengan kebutuhan)\n3.Pilih metode pembayaran (kenyamanan anda adalah prioritas kami. kami menyediakan berbagai metode pembayaran yang mudah dan aman) \n4.Masukan nomor WhatsApp dan Email yang valid (Dapatkan konfirmasi dan notifikasi langsung ke kontak anda) \n5.Klik order now & lakukan pembayaran (Proses mudah dan cepat, kini anda tinggal selangkah lagi untuk meningkatkan pengalaman gaming anda \n6.UC akan masuk otomatis ke akun anda) \n\n GamerStore Sahabat para Gamers!',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 class KT_Fortnite extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Text(
-      'Top up V- Bucks',
-      style: TextStyle(fontSize: 16),
+ Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff22577A),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).pop(); // Kembali ke halaman sebelumnya
+          },
+        ),
+        title: Text(
+          'Kembali',
+          style: TextStyle(fontSize: 16, color: Colors.white),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.only(top: 0),
+          padding: EdgeInsets.only(left: 30),
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 25),
+              Text(
+                'Top up FORTNITE',
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  'GamerStore mempersembahkan penawaran istimewa untuk penawaran sejati untuk para Gamers sejati kami hadir dengan layanan Topup resmi 100% legal untuk Fortnite, Yang dirancang khusus untuk meningkatkan pengalaman bermain game anda. Nikmati kemudahan, keamanan, dan harga yang terjangkau dalam setiap transaksi Top up anda\n\nTop up Fortnite Resmi dan terpercaya.\n\nBerikut adalah langkah-langkah sederhana untuk topup Fortnite: \n\n1.Masukan Data Akun Fortnite(pastikan data yang anda masukan sudah benar dan lengkap)\n2.Pilih nominal V Bucks (kami menyediakan berbagai pilihan nominal yang bisa anda sesuaikan dengan kebutuhan)\n3.Pilih metode pembayaran (kenyamanan anda adalah prioritas kami. kami menyediakan berbagai metode pembayaran yang mudah dan aman) \n4.Masukan nomor WhatsApp dan Email yang valid (Dapatkan konfirmasi dan notifikasi langsung ke kontak anda) \n5.Klik order now & lakukan pembayaran (Proses mudah dan cepat, kini anda tinggal selangkah lagi untuk meningkatkan pengalaman gaming anda \n6.V Bucks akan masuk otomatis ke akun anda) \n\n GamerStore Sahabat para Gamers!',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 class KT_Honkai extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Top up Oneiric Shard',
-      style: TextStyle(fontSize: 16),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff22577A),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).pop(); // Kembali ke halaman sebelumnya
+          },
+        ),
+        title: Text(
+          'Kembali',
+          style: TextStyle(fontSize: 16, color: Colors.white),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.only(top: 0),
+          padding: EdgeInsets.only(left: 30),
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 25),
+              Text(
+                'Top up Honkai Star Rail',
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Text(
+                  'GamerStore mempersembahkan penawaran istimewa untuk penawaran sejati untuk para Gamers sejati kami hadir dengan layanan Topup resmi 100% legal untuk Honkai Star Rail, Yang dirancang khusus untuk meningkatkan pengalaman bermain game anda. Nikmati kemudahan, keamanan, dan harga yang terjangkau dalam setiap transaksi Top up anda\n\nTop up Honkai Star Rail Resmi dan terpercaya.\n\nBerikut adalah langkah-langkah sederhana untuk topup Honkai Star Rail: \n\n1.Masukan Data Akun Honkai Star Rail (pastikan data yang anda masukan sudah benar dan lengkap)\n2.Pilih nominal Oneiric Shard (kami menyediakan berbagai pilihan nominal yang bisa anda sesuaikan dengan kebutuhan)\n3.Pilih metode pembayaran (kenyamanan anda adalah prioritas kami. kami menyediakan berbagai metode pembayaran yang mudah dan aman) \n4.Masukan nomor WhatsApp dan Email yang valid (Dapatkan konfirmasi dan notifikasi langsung ke kontak anda) \n5.Klik order now & lakukan pembayaran (Proses mudah dan cepat, kini anda tinggal selangkah lagi untuk meningkatkan pengalaman gaming anda \n6.Oneiric Shard akan masuk otomatis ke akun anda) \n\n GamerStore Sahabat para Gamers!',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

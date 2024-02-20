@@ -250,16 +250,15 @@ GestureDetector(
               color: Colors.white,
               fontSize: 18,
             ),
-          ),
-          // SizedBox(height: 10), // Menambahkan sedikit ruang antara teks dan TextField
-          // Text(
-          //   'Masukkan Data Akun Kamu',
-          //   style: TextStyle(
-          //     color: Colors.white,
-          //     fontSize: 16,
-          //   ),
-          // ),
-          SizedBox(height: 20), 
+          ),SizedBox(height: 15), 
+           Text(
+        'EMAIL',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+        ),
+      ),
+          SizedBox(height: 9),  
           Container(
             margin: EdgeInsets.only(bottom: 10),
             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -271,23 +270,7 @@ GestureDetector(
             child: TextField(
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                hintText: 'Masukan ID Game kamu',
-                hintStyle: TextStyle(color: Colors.white54),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: Color(0xff22577A),
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: Colors.white),
-            ),
-            child: TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: 'Masukan Server Game Kamu',
+                hintText: 'Ketikan Alamat Email ....',
                 hintStyle: TextStyle(color: Colors.white54),
                 border: InputBorder.none,
               ),

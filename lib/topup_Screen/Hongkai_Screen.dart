@@ -250,16 +250,15 @@ GestureDetector(
               color: Colors.white,
               fontSize: 18,
             ),
-          ),
-          // SizedBox(height: 10), // Menambahkan sedikit ruang antara teks dan TextField
-          // Text(
-          //   'Masukkan Data Akun Kamu',
-          //   style: TextStyle(
-          //     color: Colors.white,
-          //     fontSize: 16,
-          //   ),
-          // ),
-          SizedBox(height: 20), 
+          ),SizedBox(height: 15), 
+           Text(
+        'ID',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+        ),
+      ),
+          SizedBox(height: 9),   
           Container(
             margin: EdgeInsets.only(bottom: 10),
             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -277,6 +276,15 @@ GestureDetector(
               ),
             ),
           ),
+           SizedBox(height: 10), 
+           Text(
+        'Server',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 14,
+        ),
+      ),
+          SizedBox(height: 9),   
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
