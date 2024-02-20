@@ -3,7 +3,9 @@ import 'package:project/screens/home.dart';
 import 'package:project/screens/lacak_orderan.dart';
 import 'package:project/screens/profile.dart';
 import 'package:project/screens/setting.dart';
-import 'package:project/screens/welcome_screen.dart'; // Mengimpor file account_page.dart yang berisi kelas AccountPage
+// import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
+import 'package:project/screens/welcome_screen.dart'; 
 
 void main() {
   runApp(MyApp());
@@ -30,5 +32,6 @@ class MyApp extends StatelessWidget {
       // Konfigurasi lainnya
       // ...
     );
+    
   }
 }

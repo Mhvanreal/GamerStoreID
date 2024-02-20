@@ -4,7 +4,7 @@ class HomeBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 40),
+      padding: EdgeInsets.symmetric(horizontal: 60),
       height: 65,
       decoration: BoxDecoration( 
         color: Colors.white, //warnabox
@@ -37,15 +37,15 @@ class HomeBottomBar extends StatelessWidget {
               Icons.search, color: Color(0xFFE57734),  
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              // Navigasi ke halaman pengaturan
-              Navigator.pushNamed(context, '/settings');
-            },
-            child: Icon(
-              Icons.settings, color: Color(0xFFE57734), 
-            ),
-          ),
+          // GestureDetector(
+          //   onTap: () {
+          //     // Navigasi ke halaman pengaturan
+          //     Navigator.pushNamed(context, '/settings');
+          //   },
+          //   child: Icon(
+          //     Icons.settings, color: Color(0xFFE57734), 
+          //   ),
+          // ),
           GestureDetector(
             onTap: () {
               // Navigasi ke halaman akun

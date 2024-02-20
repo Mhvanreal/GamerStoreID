@@ -12,7 +12,6 @@ import 'package:project/topup_Screen/Valo_Screen.dart';
 import 'package:project/topup_Screen/ff_Screen.dart';
 import 'package:project/topup_Screen/fortnite_Screen.dart';
 
-
 class ItemsWidget extends StatelessWidget {
   List<String> img = [
     'wanwan',
@@ -24,8 +23,8 @@ class ItemsWidget extends StatelessWidget {
     'topup gensin',
     'topup valo',
     'topup fortnite',
-    'AOV',
-    'Hongkai',
+    'topup Aov',
+    'topup hongkai',
     'newstate',
   ];
 
@@ -39,54 +38,42 @@ class ItemsWidget extends StatelessWidget {
       children: [
         for (int i = 0; i < img.length; i++)
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-            margin: EdgeInsets.symmetric(vertical: 18, horizontal: 13),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: EdgeInsets.symmetric(vertical: 7, horizontal: 15),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
               color: Color(0xff38A3A5),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black,
-                  spreadRadius: 1,
-                  blurRadius: 8,
-                ),
-              ],
             ),
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                double containerSize = constraints.maxWidth * 1.2;
-                return Column(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        navigateToPage(context, img[i]); // Navigasi berdasarkan gambar yang diklik
-                      },
-                      child: Container(
-                        width: containerSize,
-                        height: containerSize,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("images/${img[i]}.png"),
-                            fit: BoxFit.contain,
-                          ),
-                        ),
+            child: InkWell(
+              onTap: () {
+                navigateToPage(context, img[i]);
+              },
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  double imageSize = constraints.maxWidth;
+                  return Container(
+                    width: imageSize,
+                    height: imageSize,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("images/${img[i]}.png"),
+                        fit: BoxFit.contain,
                       ),
                     ),
-                  ],
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
       ],
     );
   }
 
-  // Fungsi untuk menentukan tujuan navigasi berdasarkan gambar yang diklik
   void navigateToPage(BuildContext context, String imgName) {
-    if (imgName == 'AOV') {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => AovTopup())); // Navigasi ke halaman AOV
+    if (imgName == 'topup Aov') {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => AovTopup()));
     } else if (imgName == 'topup coc') {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => CocTopUp())); // Navigasi ke halaman topup coc
+      Navigator.push(context, MaterialPageRoute(builder: (context) => CocTopUp()));
     } else if (imgName == 'wanwan'){
       Navigator.push(context, MaterialPageRoute(builder: (context) => MlScreen()));
     }else if (imgName == 'topup pubg'){
@@ -107,7 +94,7 @@ class ItemsWidget extends StatelessWidget {
     else if (imgName == 'topup fortnite'){
       Navigator.push(context, MaterialPageRoute(builder: (context) => forntniteScreen()));
     }
-    else if (imgName == 'Hongkai'){
+    else if (imgName == 'topup hongkai'){
       Navigator.push(context, MaterialPageRoute(builder: (context) => HongkaiScreen()));
     }
     else if (imgName == 'newstate'){
@@ -118,6 +105,5 @@ class ItemsWidget extends StatelessWidget {
     } else {
 
     }
-
   }
 }
