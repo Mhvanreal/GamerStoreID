@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/Login/auth_layout.dart';
-import 'package:project/screens/home.dart';
-// import 'package:project/screens/home.dart';
+import 'package:project/Login_2/wrapper.dart';
 
 class welcomescreen extends StatelessWidget {
   @override
@@ -39,7 +37,7 @@ class welcomescreen extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
+                      builder: (context) => Wrapper(),
                       ));
                     // Tindakan ketika tombol ditekan
                   },

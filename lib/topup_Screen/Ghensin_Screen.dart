@@ -11,7 +11,7 @@ class GenshinScreen extends StatelessWidget {
     return Scaffold( 
       appBar: AppBar( 
         title: Text(
-          'Top Up Genesis Crystal',
+          'Top Up Genshin Impact',
           style: TextStyle(
             color: Colors.white,
             fontSize: 17,

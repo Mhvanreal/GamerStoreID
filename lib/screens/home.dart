@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project/widgets/joki.dart';
 import 'package:project/widgets/populer_widgets.dart';
@@ -15,6 +16,20 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); // Add this line
+
+  final user = FirebaseAuth.instance.currentUser;
+    // signout()async{
+    //   await FirebaseAuth.instance.signOut();
+    // }
+    signout() async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    await FirebaseAuth.instance.signOut();
+    // Navigasi kembali ke halaman login atau halaman awal aplikasi
+    // Misalnya, jika menggunakan Navigator, Anda dapat menavigasi ke halaman login:
+    // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+  }
+}
 
   @override
   void initState() {
@@ -185,13 +200,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               decoration: BoxDecoration(
                 color: Color(0xff22577A),
               ),
-              child: Text(
-          'GamerStore.id',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-          ),
-            ),
+              child: Text('${user!.email}'),
             ),
             ListTile( 
               leading: Icon(Icons.account_circle), // Ikon yang ditambahkan
@@ -207,14 +216,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 Navigator.pop(context); 
               }, // Add this line
             ), // Add this line
-            ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text('Keluar'),
-              onTap: (){
-                Navigator.pop(context); // Menutup layar pengaturan
-                
-              },
-            ),
+           ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text('Keluar'),
+                onTap: () =>signout(),
+              ),
           ], // Add this line
         ), // Add this line
       ), // Add this line

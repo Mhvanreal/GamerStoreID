@@ -5,7 +5,7 @@ class JasaRank extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( 
-        title: Text('Halaman Joki rank'), // Judul halaman
+        title: Text('Halama n Joki rank'), // Judul halaman
       ),
       body: Center(
         child: Container(
