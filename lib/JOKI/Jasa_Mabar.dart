@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-class JasaMabar extends StatelessWidget {
+class JasaMabar extends StatefulWidget {
+  const JasaMabar({super.key});
+
   @override
-  Widget build(BuildContext context) {
+  State<JasaMabar> createState() => _JasamabarState();
+}
+
+class _JasamabarState extends State<JasaMabar> {
+  @override
+ Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( 
         title: Text('Halaman Jasa Main Bareng'), // Judul halaman

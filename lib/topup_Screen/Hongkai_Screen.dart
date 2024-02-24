@@ -2,7 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:project/Ketentuan%20TopUp/Ketentuan_topup.dart';
 import 'package:project/widgets/home_buttom.dart';
 
-class HongkaiScreen extends StatelessWidget {
+class HongkaiScreen extends StatefulWidget {
+  @override
+
+  _HonkaiScreenState createState()=> _HonkaiScreenState();
+}
+  class _HonkaiScreenState extends State <HongkaiScreen> {
+  late String valueChoose;
+  List<String> listItem = ["Pilih Server ","Asia", "America", "Europe", "TW_HK_MO"];
+
+  @override
+  void initState() {
+    super.initState();
+    valueChoose = listItem[0];
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
@@ -14,7 +29,7 @@ class HongkaiScreen extends StatelessWidget {
             fontSize: 17,
           ),
         ),
-       backgroundColor: Color(0xff22577A),
+      backgroundColor: Color(0xff22577A),
         leading: IconButton( 
           icon: Icon(Icons.arrow_back,
           color: Colors.white,),
@@ -286,21 +301,43 @@ GestureDetector(
       ),
           SizedBox(height: 9),   
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: Color(0xff22577A),
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: Colors.white),
-            ),
-            child: TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: 'Masukan Server Game Kamu',
-                hintStyle: TextStyle(color: Colors.white54),
-                border: InputBorder.none,
-              ),
-            ),
+          padding: EdgeInsets.only(left: 10, right: 15), // Tambahkan padding kiri di sini
+                decoration: BoxDecoration(
+                  color: Color(0xff22577A),
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.white),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: DropdownButton(
+                        isExpanded: true, // Membuat dropdown memenuhi lebar yang tersedia
+                        hint: Text("Pilih Server"),
+                        icon: Icon(Icons.arrow_drop_down,
+                        color: Colors.white,),
+                        dropdownColor: Color(0xff22577A),
+                        iconSize: 25,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        value: valueChoose,
+                        onChanged: (newValue) {
+                          setState(() {
+                            valueChoose = newValue.toString();
+                          });
+                        },
+                        items: listItem.map((valueItem) {
+                          return DropdownMenuItem(
+                            value: valueItem,
+                            child: Text(valueItem),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
+                ),
           ),
+
         ],
       ),
     ),

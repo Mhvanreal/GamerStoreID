@@ -2,14 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:project/Ketentuan%20TopUp/Ketentuan_topup.dart';
 import 'package:project/widgets/home_buttom.dart';
 
-class GenshinScreen extends StatelessWidget {
- 
+class GenshinScreen extends StatefulWidget {
+  @override
+  _GenshinScreenState createState() => _GenshinScreenState();
+}
 
-  
+class _GenshinScreenState extends State<GenshinScreen> {
+  late String valueChoose;
+  List<String> listItem = ["Pilih Server ","Asia", "America", "Europe", "TK, HK, MO"];
+
+  @override
+  void initState() {
+    super.initState();
+    valueChoose = listItem[0];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
-      appBar: AppBar( 
+    return Scaffold(
+      appBar: AppBar(
         title: Text(
           'Top Up Genshin Impact',
           style: TextStyle(
@@ -17,34 +28,28 @@ class GenshinScreen extends StatelessWidget {
             fontSize: 17,
           ),
         ),
-       backgroundColor: Color(0xff22577A),
-        leading: IconButton( 
-          icon: Icon(Icons.arrow_back,
-          color: Colors.white,),
-          
+        backgroundColor: Color(0xff22577A),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
       ),
-
-      // batas body dengan widget 
-
-      body: ListView( 
+      body: ListView(
         children: <Widget>[
-          
           Container(
-            height: 200, 
-            width: double.infinity, 
+            height: 200,
+            width: double.infinity,
             color: Colors.blue,
             child: Image.asset(
-              'images/Screen_Genshin.png', 
-              fit: BoxFit.cover, 
+              'images/Screen_Genshin.png',
+              fit: BoxFit.cover,
             ),
           ),
           // Bagian bawah berisi teks
 
-             Container(
+      Container(
       padding: EdgeInsets.all(16),
       color: Color(0xff22577A),
       child: Row(
@@ -173,16 +178,16 @@ Container(
         ],
       ),
       // Baris keempat
-       SizedBox(height: 10),
+    SizedBox(height: 10),
       Row(
         children: <Widget>[
           Icon(
             Icons.flash_on,
             color: Color(0xff80ED99),
           ),
-          SizedBox(width: 8), 
+          SizedBox(width: 8),
           Text(
-            'Proses Cepat & Otomatis', 
+            'Proses Cepat & Otomatis',
             style: TextStyle(
               fontSize: 14,
               color: Colors.white,
@@ -194,7 +199,7 @@ Container(
   ),
 ),
 
-  //Car tata cara dan ketentuan 
+  //Car tata cara dan ketentuan
 GestureDetector(
       onTap: () {
         Navigator.push(
@@ -202,8 +207,8 @@ GestureDetector(
           MaterialPageRoute(builder: (context) => KT_genshin()),
         );
       },
-   child : Container(
-  margin: EdgeInsets.only(bottom: 20, left: 20, right: 20), 
+  child : Container(
+  margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
   padding: EdgeInsets.all(20),
   decoration: BoxDecoration(
     color: Color(0xff22577A),
@@ -213,7 +218,6 @@ GestureDetector(
   child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children:  [
-           
             Text(
               'Lihat Cara Transaksi Disini',
               style: TextStyle(
@@ -230,97 +234,109 @@ GestureDetector(
 ),
 ),
 
-  // batas ketentuan
 
 
-    
-  
-  Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: <Widget>[
-    Container(
-      margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        border: Border.all(color: Color(0xffC7F9CC)),
-        color: Color(0xff22577A),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            '1      Masukan Data Akun Kamu',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-            ),
-          ), 
-          SizedBox(height: 15), 
-           Text(
-        'ID',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-        ),
-      ),
-          SizedBox(height: 9),   
+
+
+
           Container(
-            margin: EdgeInsets.only(bottom: 10),
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
+              border: Border.all(color: Color(0xffC7F9CC)),
               color: Color(0xff22577A),
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(10),
             ),
-            child: TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: 'Masukan ID Game kamu',
-                hintStyle: TextStyle(color: Colors.white54),
-                border: InputBorder.none,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  '1      Masukan Data Akun Kamu',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(height: 15),
+                Text(
+                  'ID',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                ),
+                SizedBox(height: 9),
+                Container(
+                  margin: EdgeInsets.only(bottom: 10),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: Color(0xff22577A),
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(color: Colors.white),
+                  ),
+                  child: TextField(
+                    style: TextStyle(color: Colors.white),
+                    decoration: InputDecoration(
+                      hintText: 'Masukan ID Game kamu',
+                      hintStyle: TextStyle(color: Colors.white54),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Server',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                ),
+                SizedBox(height: 9),
+                Container(
+                padding: EdgeInsets.only(left: 10, right: 15), // Tambahkan padding kiri di sini
+                decoration: BoxDecoration(
+                  color: Color(0xff22577A),
+                  borderRadius: BorderRadius.circular(5),
+                  border: Border.all(color: Colors.white),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: DropdownButton(
+                        isExpanded: true, // Membuat dropdown memenuhi lebar yang tersedia
+                        hint: Text("Pilih Server"),
+                        icon: Icon(Icons.arrow_drop_down,
+                        color: Colors.white,),
+                        dropdownColor: Color(0xff22577A),
+                        iconSize: 25,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        value: valueChoose,
+                        onChanged: (newValue) {
+                          setState(() {
+                            valueChoose = newValue.toString();
+                          });
+                        },
+                        items: listItem.map((valueItem) {
+                          return DropdownMenuItem(
+                            value: valueItem,
+                            child: Text(valueItem),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+
+              ],
             ),
           ),
-           SizedBox(height: 10), 
-           Text(
-        'Server',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 14,
-        ),
-      ),
-          SizedBox(height: 9),   
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              color: Color(0xff22577A),
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: Colors.white),
-            ),
-            child: TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                hintText: 'Masukan Server Game Kamu',
-                hintStyle: TextStyle(color: Colors.white54),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
+          // Widget lainnya...
         ],
       ),
-    ),
-  ],
-),
-
-
-
-
-
-        ],
-      ),
-      bottomNavigationBar: HomeBottomBar() ,
+      bottomNavigationBar: HomeBottomBar(),
     );
-  
   }
 }

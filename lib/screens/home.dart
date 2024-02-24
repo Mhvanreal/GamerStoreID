@@ -200,7 +200,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               decoration: BoxDecoration(
                 color: Color(0xff22577A),
               ),
-              child: Text('${user!.email}'),
+              child: Text('${user!.email}',
+              style: TextStyle(
+              color: Colors.white,
+              ),),
             ),
             ListTile( 
               leading: Icon(Icons.account_circle), // Ikon yang ditambahkan

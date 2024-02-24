@@ -37,6 +37,7 @@ dependencies:
   firebase_auth: ^4.17.5
   google_fonts: ^6.1.0
   email_validator: ^2.1.17
+  get: ^4.6.6
   
 
   
