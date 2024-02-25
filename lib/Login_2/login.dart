@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/Login_2/lupaPw.dart';
 import 'package:project/Login_2/register.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class login extends StatefulWidget {
   const login({Key? key});
@@ -26,11 +27,14 @@ class _loginState extends State<login> {
         errorMessage = error.message ?? "Kemungkinan email dan password salah";
       }
       
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(errorMessage),
-        ),
-      );
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
+        title: 'Error',
+        desc: "Kemungkinan email dan password anda salah",
+        btnOkOnPress: () {},
+      )..show();
     }
   }
 

@@ -291,8 +291,8 @@ GestureDetector(
               ),
             ),
           ),
-           SizedBox(height: 10), 
-           Text(
+          SizedBox(height: 10), 
+          Text(
         'Server',
         style: TextStyle(
           color: Colors.white,

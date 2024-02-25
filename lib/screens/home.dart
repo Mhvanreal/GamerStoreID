@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project/widgets/joki.dart';
@@ -220,13 +221,27 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               }, // Add this line
             ), // Add this line
            ListTile(
-                leading: Icon(Icons.exit_to_app),
-                title: Text('Keluar'),
-                onTap: () =>signout(),
+                 leading: Icon(Icons.exit_to_app),
+              title: Text('Keluar'),
+              onTap: () => showLogoutDialog(context),
               ),
-          ], // Add this line
-        ), // Add this line
-      ), // Add this line
+          ], 
+        ), 
+      ), 
     );
+  }
+  void showLogoutDialog(BuildContext context) {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.warning,
+      animType: AnimType.topSlide,
+      showCloseIcon: true,
+      title: 'Warning',
+      desc: 'Apakah Anda yakin ingin keluar?',
+      btnCancelOnPress: () {},
+      btnOkOnPress: () {
+        signout();
+      },
+    )..show();
   }
 }

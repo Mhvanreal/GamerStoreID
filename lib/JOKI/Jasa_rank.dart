@@ -9,6 +9,15 @@ class JasaRank extends StatefulWidget {
 }
 
 class _JasaRankState extends State<JasaRank> {
+  late String valueChoose;
+  List<String> listItem = ["Pilih Via Login ", "Moonton(Rekomendasi)", "Vk", "Tiktok", "Facrbook"];
+
+  @override
+  void initState() {
+    super.initState();
+    valueChoose = listItem[0];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +87,6 @@ class _JasaRankState extends State<JasaRank> {
                         padding: EdgeInsets.only(top: 10),
                         child: Row(
                           children: <Widget>[
-                            
                             Icon(
                               Icons.check_circle,
                               color: Colors.green,
@@ -184,8 +192,6 @@ class _JasaRankState extends State<JasaRank> {
               ],
             ),
           ),
-
-          // Car tata cara dan ketentuan
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -219,6 +225,222 @@ class _JasaRankState extends State<JasaRank> {
               ),
             ),
           ),
+          //////////////// akun data ////////
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xffC7F9CC)),
+                  color: Color(0xff22577A),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '1      Masukan Data Akun Kamu',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    Text(
+                      'User ID & Nickname',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 9),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 0),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color(0xff22577A),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: TextField(
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: 'Masukan ID Game kamu',
+                          hintStyle: TextStyle(color: Colors.white54),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 9),
+                    Text(
+                      'Server',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 9),
+                    Container(
+                      padding: EdgeInsets.only(left: 10, right: 15),
+                      decoration: BoxDecoration(
+                        color: Color(0xff22577A),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: DropdownButton(
+                              isExpanded: true,
+                              hint: Text("Pilih Server"),
+                              icon: Icon(
+                                Icons.arrow_drop_down,
+                                color: Colors.white,
+                              ),
+                              dropdownColor: Color(0xff22577A),
+                              iconSize: 25,
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                              value: valueChoose,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  valueChoose = newValue.toString();
+                                });
+                              },
+                              items: listItem.map((valueItem) {
+                                return DropdownMenuItem(
+                                  value: valueItem,
+                                  child: Text(valueItem),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      'Email/No Hp/Moonton ID',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 9),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color(0xff22577A),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: TextField(
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: 'Ketikan Email/No Hp/Moonton ID',
+                          hintStyle: TextStyle(color: Colors.white54),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+
+                     SizedBox(height: 10),
+                    Text(
+                      'Password',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 9),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color(0xff22577A),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: TextField(
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: 'Ketikan Password',
+                          hintStyle: TextStyle(color: Colors.white54),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+
+
+                      SizedBox(height: 10),
+                    Text(
+                      'Request Hero',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 9),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color(0xff22577A),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.white),
+                      ),
+                      child: TextField(
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: 'Ketikan Request Hero',
+                          hintStyle: TextStyle(color: Colors.white54),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+
+
+                      SizedBox(height: 10),
+                    Text(
+                      'Catatan Untuk Pejoki',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                    ),
+                    SizedBox(height: 9),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Color(0xff22577A),
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: Colors.white),git
+                      ),
+                      child: TextField(
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                          hintText: 'Ketikan Catatan Untuk Pejoki',
+                          hintStyle: TextStyle(color: Colors.white54),
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    ///////
+                  ],
+                ),
+              ),
+            ],
+          ),
+
+
+
+
+
         ],
       ),
     );
