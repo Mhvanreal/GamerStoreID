@@ -19,10 +19,10 @@ class Populerw extends StatelessWidget {
             SizedBox(height: 1),
           _buildImage('images/PO_ff.png', () {
             _navigateToFFScreen(context);
-          }), 
+          }),
           _buildImage('images/PO_coc.png', () {
             _navigateToCOC(context);
-          }), 
+          }),
             SizedBox(height: 1),
           _buildImage('images/PO_JOKI.png', () {
 

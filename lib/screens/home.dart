@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>(); // Add this line
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final user = FirebaseAuth.instance.currentUser;
     // signout()async{
@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   children: [
                     InkWell(
                       onTap: () {
-                        _scaffoldKey.currentState!.openDrawer(); // Add this line
+                        _scaffoldKey.currentState!.openDrawer();
                       },
                       child: Icon(
                         Icons.sort,
@@ -149,6 +149,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     ),
                     prefixIcon: Icon(Icons.search, size: 30, color: Colors.white),
                   ),
+                  
                 ),
               ),
               TabBar(
@@ -186,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   Populerw(),
                   ItemsWidget(),
                   listJoki(),
-                  tokens(), 
+                  tokens(),
                 ][_tabController.index],
               ),
             ],
@@ -194,10 +195,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         ),
       ),
       bottomNavigationBar: HomeBottomBar(),
-      drawer: Drawer(  
-        child: ListView( 
-          padding: EdgeInsets.zero, 
-          children: <Widget>[ 
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Color(0xff22577A),
@@ -207,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               color: Colors.white,
               ),),
             ),
-            ListTile( 
+            ListTile(
               leading: Icon(Icons.account_circle), // Ikon yang ditambahkan
               title: Text('Profile'), 
               onTap: () { 
@@ -221,8 +222,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 Navigator.pop(context); 
               }, // Add this line
             ), // Add this line
-           ListTile(
-                 leading: Icon(Icons.exit_to_app),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
               title: Text('Keluar'),
               onTap: () => showLogoutDialog(context),
               ),

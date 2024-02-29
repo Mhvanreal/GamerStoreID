@@ -252,10 +252,7 @@ Terimakasih""",
               ),
             ),
             SizedBox(width: 20,),
-            Icon(
-              Icons.warning,
-              color: Color.fromARGB(255, 255, 241, 38),
-            ),
+            
           ],
         ),
       ),

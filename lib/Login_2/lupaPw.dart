@@ -24,11 +24,10 @@ class _lupaPwState extends State<lupaPw> {
       backgroundColor: Colors.white,
       appBar: AppBar(title: Text("Lupa Password"),),
       body: Padding(
-       
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-             TextField(
+              TextField(
               controller: email,
               decoration: InputDecoration(hintText: "masukan email anda"),
             ),
@@ -43,7 +42,6 @@ class _lupaPwState extends State<lupaPw> {
                 "Send Link",
                 style: TextStyle(fontSize: 20),)),
           ],
-        
         ),
       ),
     );
