@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project/JOKI/Jasa_Clasik.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project/JOKI/Jasa_MCL.dart';
 import 'package:project/JOKI/Jasa_Mabar.dart';
 import 'package:project/JOKI/Jasa_Montage.dart';
@@ -8,7 +7,7 @@ import 'package:project/JOKI/Jasa_rank.dart';
 
 class listJoki extends StatelessWidget {
   List<String> img = [
-    // 'JASA MCL', 
+    // 'JASA MCL',
     'JASA RANK',
     'JASA CLASIK',
     'JASA MABAR',

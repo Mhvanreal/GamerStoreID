@@ -49,25 +49,28 @@ class _SearchPageState extends State<SearchPage> {
             ),
           ),
           SizedBox(height: 20),
-          Container(
-                margin: EdgeInsets.only(bottom: 20),
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(7),
-                  color: Color(0xff22577A),
-                ),
-                child: GestureDetector(
-              onTap: () {
-                // Tambahkan logika ketika tombol ditekan
-              },
-              child: Text(
-                'Lacak Orderan kamu',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Container(
+                  margin: EdgeInsets.only(bottom: 20),
+                  width: MediaQuery.of(context).size.width,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7),
+                    color: Color(0xff22577A),
+                  ),
+                  child: GestureDetector(
+                onTap: () {
+                  // Tambahkan logika ketika tombol ditekan
+                },
+                child: Text(
+                  'Lacak Orderan kamu',
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white
+                  ),
                 ),
               ),
             ),

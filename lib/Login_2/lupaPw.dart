@@ -14,7 +14,6 @@ class _lupaPwState extends State<lupaPw> {
   TextEditingController email = TextEditingController();
   reset()async{
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email.text);
-   
   }
 
 
