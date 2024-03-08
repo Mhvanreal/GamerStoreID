@@ -24,7 +24,7 @@ class _registerState extends State<register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff80ED99),
+      backgroundColor: Color(0xff38A3A5),
       appBar: AppBar(title: Text("Daftar Akun Anda")),
       body: SingleChildScrollView(
         child: Padding(

@@ -42,7 +42,7 @@ class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff80ED99),
+      backgroundColor: Color(0xff38A3A5),
       appBar: AppBar(title: Text("Login Page")),
       body: SingleChildScrollView(
         child: Padding(
@@ -63,23 +63,13 @@ class _loginState extends State<login> {
               SizedBox(height: 40),
               Center(
                 child: Image.asset(
-                  'images/Chica.png',
+                  'images/boy_mobile.png',
                   width: 200,
                   height: 200,
                 ),
               ),
-              SizedBox(height: 40),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Email',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 19,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
+              SizedBox(height: 80),
+             
               TextField(
                 controller: email,
                 decoration: InputDecoration(
@@ -93,18 +83,8 @@ class _loginState extends State<login> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Password',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 19,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
+              SizedBox(height: 40),
+             
               TextField(
                 controller: password,
                 obscureText: _isObscure,
@@ -138,7 +118,7 @@ class _loginState extends State<login> {
                     child: Text(
                       'Register Now',
                       style: TextStyle(
-                        color: Colors.blue,
+                        color:Colors.white,
                         fontSize: 17,
                       ),
                     ),
@@ -148,7 +128,7 @@ class _loginState extends State<login> {
                     child: Text(
                       'Lupa Password',
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.white,
                         fontSize: 17,
                       ),
                     ),
