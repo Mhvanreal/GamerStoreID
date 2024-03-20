@@ -4,7 +4,7 @@ class HomeBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 8),
       height: 70, // Mengubah tinggi menjadi 70
       decoration: BoxDecoration(
         color: Colors.white,

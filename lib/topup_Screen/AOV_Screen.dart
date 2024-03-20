@@ -5,7 +5,8 @@ import 'package:project/widgets/home_buttom.dart';
 class AovTopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar( 
         title: Text(
           'Top Up Arena Of Valor',

@@ -5,8 +5,9 @@ import 'package:project/widgets/home_buttom.dart';
 class ValoScreen extends StatelessWidget {
   @override
  Widget build(BuildContext context) {
-    return Scaffold( 
-      appBar: AppBar( 
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
         title: Text(
           'Top Up V Points Valorant',
           style: TextStyle(

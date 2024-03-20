@@ -5,7 +5,8 @@ import 'package:project/widgets/home_buttom.dart';
 class FFScreen extends StatelessWidget {
   @override
    Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar( 
         title: Text(
           'Top Up Free Fire',

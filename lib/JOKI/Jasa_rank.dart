@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:project/Ketentuan%20TopUp/ketentuan%20_joki.dart';
 
 class JasaRank extends StatefulWidget {
@@ -284,6 +285,7 @@ Terimakasih""",
                       fontSize: 16,
                     ),
                   ),
+                  SizedBox(width: 10,),
                   Icon(
                     Icons.arrow_forward,
                     color: Colors.white,

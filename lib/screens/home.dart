@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project/widgets/joki.dart';
 import 'package:project/widgets/populer_widgets.dart';
-import 'package:project/widgets/pulsa_token.dart';
 import '../widgets/home_buttom.dart';
 import '../widgets/items_widget.dart';
 
@@ -23,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     // signout()async{
     //   await FirebaseAuth.instance.signOut();
     // }
+    
     signout() async {
   final user = FirebaseAuth.instance.currentUser;
   if (user != null) {
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey, // Add this line
-      backgroundColor: Color(0xff22577A),
+      backgroundColor: Color.fromARGB(255, 34, 87, 122),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(top: 15),
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 labelColor: Color(0xffC7F9CC),
                 unselectedLabelColor: Colors.white,
                 isScrollable: true,
-                indicator: UnderlineTabIndicator(
+                indicator: UnderlineTabIndicator  (
                   borderSide: BorderSide(
                     width: 3,
                     color: Color(0xffC7F9CC),
@@ -168,17 +168,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                 labelPadding: EdgeInsets.symmetric(horizontal: 20),
                 tabs: [
                   Tab(
-                    text: "🔥Populer",
+                    text: "Populer",
                   ),
                   Tab(
-                    text: "💎 Top Up Games",
+                    text: "Top Up Games",
                   ),
                   Tab(
-                    text: "📶 Joki Rank",
+                    text: "Jasa MLBB",
                   ),
-                  Tab(
-                    text: "🪙 Pulsa,Data & Tagihan",
-                  ),
+                  // Tab(
+                  //   text: "🪙 Pulsa,Data & Tagihan",
+                  // ),
                 ],
               ),
               SizedBox(height: 10),
@@ -187,7 +187,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   Populerw(),
                   ItemsWidget(),
                   listJoki(),
-                  tokens(),
+                  // tokens(),
                 ][_tabController.index],
               ),
             ],

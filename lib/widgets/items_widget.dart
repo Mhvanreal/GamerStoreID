@@ -42,7 +42,7 @@ class ItemsWidget extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 7, horizontal: 15),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Color(0xff38A3A5),
+              // color: Color(0xff38A3A5),
             ),
             child: InkWell(
               onTap: () {

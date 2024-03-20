@@ -9,7 +9,8 @@ class MlScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
+    return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar( 
         title: Text(
           'Top Up Mobile legend',
