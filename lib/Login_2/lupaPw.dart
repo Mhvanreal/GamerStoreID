@@ -24,8 +24,8 @@ class _lupaPwState extends State<lupaPw> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
             colors: [
               const Color.fromRGBO(34, 87, 122, 1),
               const Color.fromRGBO(76, 175, 80, 1)

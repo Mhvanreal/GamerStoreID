@@ -25,12 +25,12 @@ class HomeBottomBar extends StatelessWidget {
             'Home',
           ),
           _buildIconText(
-            context, // Pastikan untuk memberikan context di sini
+            context,
             Icons.search,
             'Lacak Orderan',
           ),
           _buildIconText(
-            context, // Pastikan untuk memberikan context di sini
+            context,
             Icons.account_circle,
             'Profile',
           ),

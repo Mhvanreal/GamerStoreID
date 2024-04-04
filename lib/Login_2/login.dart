@@ -1,13 +1,18 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:http/http.dart' as http;
+import 'package:project/Login_2/Login_provider.dart';
 import 'package:project/Login_2/lupaPw.dart';
 import 'package:project/Login_2/register.dart';
 import 'package:project/screens/home.dart';
+import 'package:sp_util/sp_util.dart';
 
 class login extends StatefulWidget {
-  const login({Key? key});
+  const login({Key? key}) : super(key: key);
 
   @override
   State<login> createState() => _loginState();
@@ -17,46 +22,61 @@ class _loginState extends State<login> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool _isObscure = true;
+  final _formKey = GlobalKey<FormState>();
 
-  signIn() async {
+  void auth() async {
+  String txtemail = email.text;
+  String txtpw = password.text;
+  if (txtemail.isEmpty || txtpw.isEmpty) {
+    Get.snackbar(
+      "Error", "Email dan password tidak boleh kosong",
+      backgroundColor: Colors.red,
+      colorText: Colors.white,
+    );
+  } else {
+    EasyLoading.show();
+    var data = {
+      "email": txtemail,
+      "password" : txtpw,
+    };
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email.text, password: password.text);
-  //        AwesomeDialog(
-  // context: context,
-  // dialogType: DialogType.success,
-  // animType: AnimType.bottomSlide,
-  // title: 'Berhasil',
-  // desc: "Anda telah berhasil membuat akun",
-  // btnOkOnPress: () {
-  //   try {
-  //     // Navigasi ke halaman beranda (ganti dengan halaman yang sesuai)
-  //     Navigator.pushReplacement(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => HomeScreen()), // Ganti dengan halaman beranda yang sesuai
-  //     );
-  //   } catch (e) {
-  //     print("Error when navigating to HomeScreen: $e");
-  //   }
-  // },
-// )..show();
-    } catch (error) {
-      // Handle error
-      String errorMessage = "Kemungkinan email dan password salah";
-      if (error is FirebaseAuthException) {
-        errorMessage = error.message ?? "Kemungkinan email dan password salah";
+      var response = await LoginProvider().PostUser(data);
+      EasyLoading.dismiss();
+      if (response.statusCode == 200) {
+         var responseBody = response.body;
+    var userData = responseBody['user'];
+    var email = userData['email']; // Akses properti 'email' dari 'user'
+    var nama_lengkap = userData['nama_lengkap']; // Akses properti 'nama_lengkap' dari 'user'
+    var token = responseBody['token'];
+    SpUtil.putString('email', email);
+    SpUtil.putString('nama_lengkap', nama_lengkap);
+    SpUtil.putString('token', token);
+    Get.offAllNamed('/home');
+        
+        Get.snackbar(
+          "Success", "Login berhasil",
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      } else {
+        Get.snackbar(
+          "Error", "Login Gagal",
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
       }
-      
-      AwesomeDialog(
-        context: context,
-        dialogType: DialogType.error,
-        animType: AnimType.bottomSlide,
-        title: 'Error',
-        desc: "Kemungkinan email dan password anda salah",
-        btnOkOnPress: () {},
-      )..show();
+    } catch (e) {
+      EasyLoading.dismiss();
+      print(e);
+      Get.snackbar(
+        "Error", "Terjadi kesalahan",
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     }
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,115 +88,137 @@ class _loginState extends State<login> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [ const Color.fromRGBO(34, 87, 122, 1),const Color.fromRGBO(76, 175, 80, 1)],
+            colors: [
+              const Color.fromRGBO(34, 87, 122, 1),
+              const Color.fromRGBO(76, 175, 80, 1)
+            ],
           ),
         ),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
-            child: Column(
-              children: [
-                SizedBox(height: 20),
-                Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Selamat Datang Di GamerStore.Id',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 19,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 40),
-                Center(
-                  child: Image.asset(
-                    'images/LOGOID2.png',
-                    width: 200,
-                    height: 200,
-                  ),
-                ),
-                SizedBox(height: 80),
-             
-                TextField(
-                  controller: email,
-                  decoration: InputDecoration(
-                    hintText: "masukan email anda",
-                    filled: true,
-                    fillColor: Colors.white,
-                    prefixIcon: Icon(Icons.email),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 40),
-             
-                TextField(
-                  controller: password,
-                  obscureText: _isObscure,
-                  decoration: InputDecoration(
-                    hintText: "masukan Password anda",
-                    filled: true,
-                    fillColor: Colors.white,
-                    prefixIcon: Icon(Icons.lock),
-                    suffixIcon: IconButton(
-                      icon: Icon(_isObscure
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                      onPressed: () {
-                        setState(() {
-                          _isObscure = !_isObscure;
-                        });
-                      },
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () => Get.to(register()),
-                      child: Text(
-                        'Register Now',
-                        style: TextStyle(
-                          color:Colors.white,
-                          fontSize: 17,
-                        ),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  SizedBox(height: 20),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Selamat Datang Di GamerStore.Id',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 19,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () => Get.to(lupaPw()),
-                      child: Text(
-                        'Lupa Password',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => signIn(),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                  ),
+                  SizedBox(height: 40),
+                  Center(
+                    child: Image.asset(
+                      'images/LOGOID.png',
+                      width: 200,
+                      height: 200,
                     ),
                   ),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(fontSize: 20),
+                  SizedBox(height: 80),
+                  TextFormField(
+                    controller: email,
+                    decoration: InputDecoration(
+                      hintText: "Masukkan email Anda",
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(Icons.email),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Email harus diisi';
+                      }
+                      if (!value.contains('@')) {
+                        return 'Email tidak valid';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-              ],
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: password,
+                    obscureText: _isObscure,
+                    decoration: InputDecoration(
+                      hintText: "Masukkan Password Anda",
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                            _isObscure ? Icons.visibility : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Password harus diisi';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () => Get.to(Register()),
+                        child: Text(
+                          'Register Now',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => Get.to(lupaPw()),
+                        child: Text(
+                          'Lupa Password',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        auth();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 50),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

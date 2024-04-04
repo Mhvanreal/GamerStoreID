@@ -14,7 +14,7 @@ class Populerw extends StatelessWidget {
         children: [
             SizedBox(height: 1),
           _buildImage('images/PO_topup.png', () {
-            _navigateToMlScreen(context); // Navigasi ke MlScreen saat gambar ditekan
+            _navigateToMlScreen(context);
           }),
             SizedBox(height: 1),
           _buildImage('images/PO_ff.png', () {
@@ -25,9 +25,6 @@ class Populerw extends StatelessWidget {
           }),
             SizedBox(height: 1),
           _buildImage('images/PO_JOKI.png', () {
-
-            // ..............?
-
           }), 
             SizedBox(height: 1),
           _buildImage('images/PO_genshin.png', () {

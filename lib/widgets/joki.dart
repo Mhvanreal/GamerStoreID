@@ -7,7 +7,6 @@ import 'package:project/JOKI/Jasa_rank.dart';
 
 class listJoki extends StatelessWidget {
   List<String> img = [
-    // 'JASA MCL',
     'JASA RANK',
     'JASA CLASIK',
     'JASA MABAR',
@@ -21,12 +20,11 @@ class listJoki extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
       shrinkWrap: true,
-      childAspectRatio: (78 / 100),
+      childAspectRatio: (90 / 100),
       children: [
         for (int i = 0; i < img.length; i++)
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            margin: EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+            margin: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               // color: Color(0xff38A3A5),
@@ -37,15 +35,14 @@ class listJoki extends StatelessWidget {
               },
               child: LayoutBuilder(
                 builder: (context, constraints) {
-                  double imageSize = constraints.maxWidth;
+                  double imageSize = constraints.maxWidth - 40; // Kurangi padding kiri dan kanan dari lebar gambar
                   return Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     width: imageSize,
                     height: imageSize,
-                      decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("images/${img[i]}.png"),
-                        fit: BoxFit.contain,
-                      ),
+                    child: Image.asset(
+                      "images/${img[i]}.png",
+                      fit: BoxFit.contain,
                     ),
                   );
                 },
@@ -56,6 +53,8 @@ class listJoki extends StatelessWidget {
     );
   }
 }
+
+
 
 void navigateToPage(BuildContext context, String imgName) {
   if (imgName == 'JASA MCL') {
