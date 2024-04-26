@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:sp_util/sp_util.dart';
+import 'package:http/http.dart' as http;
 
 import '../widgets/home_buttom.dart';
 import 'package:flutter/material.dart';
@@ -15,31 +16,75 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   File? image;
+  late String imagePath;
 
-  Future getImage() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? pickedImage = await picker.pickImage(
-      source: ImageSource.gallery,
-    );
-    if (pickedImage != null) {
-      setState(() {
-        image = File(pickedImage.path);
-      });
-    }
+  @override
+  void initState() {
+    super.initState();
+    // Ambil path gambar dari SpUtil saat halaman profil dimuat
+    getSavedImagePath();
   }
 
-  Future takePhoto() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? takenImage = await picker.pickImage(
-      source: ImageSource.camera,
-    );
-    if (takenImage != null) {
-      setState(() {
-        image = File(takenImage.path);
-      });
-    }
+Future<void> getSavedImagePath() async {
+    // Mengambil path gambar dari SpUtil
+    imagePath = SpUtil.getString('imagePath') ?? '';
+    setState(() {});
   }
+
   
+Future<void> uploadPhoto(File? imageFile) async {
+    if (imageFile == null) {
+      return;
+    }
+
+    var uri = Uri.parse('http://10.0.2.2:8000/api/upload-photo');
+    var request = http.MultipartRequest('POST', uri);
+    var image =
+        await http.MultipartFile.fromPath('foto_user', imageFile.path);
+    request.files.add(image);
+
+    var token = SpUtil.getString('token');
+    request.headers['Authorization'] = 'Bearer $token';
+
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      // Jika berhasil, simpan URL gambar ke SharedPreferences
+      var imageUrl = await response.stream.bytesToString();
+      SpUtil.putString('imageUrl', imageUrl);
+      print('Upload foto berhasil');
+    } else {
+      print('Upload foto gagal');
+    }
+  }
+
+Future<void> getImage() async {
+  final ImagePicker picker = ImagePicker();
+  final XFile? pickedImage = await picker.pickImage(
+    source: ImageSource.gallery,
+  );
+  if (pickedImage != null) {
+    setState(() {
+      image = File(pickedImage.path);
+    });
+    await uploadPhoto(image);
+  }
+}
+
+Future<void> takePhoto() async {
+  final ImagePicker picker = ImagePicker();
+  final XFile? takenImage = await picker.pickImage(
+    source: ImageSource.camera,
+  );
+  if (takenImage != null) {
+    setState(() {
+      image = File(takenImage.path);
+    });
+    await uploadPhoto(image);
+  }
+}
+  
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -114,10 +159,10 @@ class _ProfileState extends State<Profile> {
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
-                child: image != null
+                child: imagePath.isNotEmpty // Periksa apakah imagePath tidak kosong
                     ? ClipOval(
-                        child: Image.file(
-                          image!,
+                        child: Image.network(
+                          imagePath, // Gunakan URL gambar dari SharedPreferences
                           fit: BoxFit.cover,
                         ),
                       )
@@ -299,13 +344,13 @@ class _ProfileState extends State<Profile> {
               children: [
                 SizedBox(width: 10,),
                 Icon(
-                  Icons.lock,
+                  Icons.home,
                   color: Colors.white,
                   size: 25,
                 ),
                 SizedBox(width: 40),
                 Text(
-                  ' ********',
+                 'Alamat: ${SpUtil.getString("alamat")}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,

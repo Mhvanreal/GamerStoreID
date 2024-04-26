@@ -45,12 +45,16 @@ class _loginState extends State<login> {
       if (response.statusCode == 200) {
          var responseBody = response.body;
     var userData = responseBody['user'];
-    var email = userData['email']; // Akses properti 'email' dari 'user'
-    var nama_lengkap = userData['nama_lengkap']; // Akses properti 'nama_lengkap' dari 'user'
+    var email = userData['email'];
+    var nama_lengkap = userData['nama_lengkap'];
+    var alamat = userData['alamat'];
+    // var foto = userData['foto_user'];
     var token = responseBody['token'];
     SpUtil.putString('email', email);
     SpUtil.putString('nama_lengkap', nama_lengkap);
     SpUtil.putString('token', token);
+    SpUtil.putString('alamat', alamat);
+    // SpUtil.putString('foto_user', foto);
     Get.offAllNamed('/home');
         
         Get.snackbar(
@@ -105,7 +109,7 @@ class _loginState extends State<login> {
                   Container(
                     alignment: Alignment.center,
                     child: Text(
-                      'Selamat Datang Di GamerStore.Id',
+                      'GamerStore.Id',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 19,

@@ -1,4 +1,10 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:get/get_core/src/get_main.dart';
+import 'package:project/Model_topUp/image_slider.dart';
 import 'package:project/screens/profile.dart';
 import 'package:project/widgets/joki.dart';
 import 'package:project/widgets/populer_widgets.dart';
@@ -6,7 +12,7 @@ import 'package:sp_util/sp_util.dart';
 import '../widgets/home_buttom.dart';
 import '../widgets/items_widget.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 
 
 class HomeScreen extends StatefulWidget {
@@ -18,16 +24,55 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   late TabController _tabController;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
+
+
+
+ void logout() async {
+  EasyLoading.show(status: 'Logging out...');
+  String? token = SpUtil.getString('token');
+  if (token != null) {
+    Uri apiUrl = Uri.parse('http://10.0.2.2:8000/api/logout');
+    try {
+      var response = await http.post(
+        apiUrl,
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      );
+      if (response.statusCode == 200) {
+        SpUtil.remove('token');
+        SpUtil.remove('email');
+        SpUtil.remove('nama_lengkap');
+        SpUtil.remove('alamat');
+        SpUtil.remove('foto_user');
+        EasyLoading.dismiss();
+        Get.snackbar(
+          "Success",
+          "Logout berhasil",
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+        );
+        Get.offAllNamed('/login');
+      } else {
+        EasyLoading.dismiss();
+        print('Logout failed: ${response.statusCode}');
+      }
+    } catch (e) {
+      EasyLoading.dismiss();
+      print('Error: $e');
+    }
+  } else {
+    EasyLoading.dismiss();
+    print('Token tidak ditemukan di local storage');
+  }
+}
+
+
 
     
-
-  signout() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      await FirebaseAuth.instance.signOut();
-    }
-  }
-
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this, initialIndex: 0);
@@ -79,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         },
                         child: Icon(
                           Icons.sort,
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white,
                           size: 35,
                         ),
                       ),
@@ -105,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         },
                         child: Icon(
                           Icons.notifications_active,
-                          color: Colors.white.withOpacity(0.5),
+                          color: Colors.white,
                           size: 35,
                         ),
                       ),
@@ -137,6 +182,71 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     ],
                   ),
                 ),
+// image Slider
+SizedBox(height: 10),
+    Column(
+  children: [
+    Container(
+      child: CarouselSlider(
+        options: CarouselOptions(
+          autoPlay: true,
+          aspectRatio: 2.0,
+          enlargeCenterPage: true,
+          viewportFraction: 0.7,
+          onPageChanged: (index, carouselReason) {
+            setState(() {
+              _current = index;
+            });
+          },
+        ),
+        items: imgList
+            .map(
+              (item) => Container(
+                child: Container(
+                  margin: EdgeInsets.all(5.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    child: Image.asset(
+                      item,
+                      fit: BoxFit.cover,
+                      width: 1000.0,
+                    ),
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+      ),
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: imgList
+          .asMap()
+          .entries
+          .map(
+            (entry) => GestureDetector(
+              onTap: () => _controller.animateToPage(entry.key),
+              child: Container(
+                width: 12.0,
+                height: 12.0,
+                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: (Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black)
+                      .withOpacity(_current == entry.key ? 0.9 : 0.4),
+                ),
+              ),
+            ),
+          )
+          .toList(),
+    ),
+  ],
+),
+
+
+
                 SizedBox(height: 30),
                 TabBar(
                   controller: _tabController,
@@ -225,7 +335,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       desc: 'Apakah Anda yakin ingin keluar?',
       btnCancelOnPress: () {},
       btnOkOnPress: () {
-        signout();
+        logout();
       },
     )..show();
   }
